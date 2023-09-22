@@ -20,4 +20,19 @@ class DataIngestionConfig:
         except Exception as e:
                     raise SensorException(e, sys)
 class DataValidataionConfig:
-    pass
+    def __init__(self,training_pipeline_config:TrainingPipelineConfig):
+        data_validation_dir = os.path.join(training_pipeline_config.artifact_dir,"data_validation")
+        self.valid_dir=os.path.join(data_validation_dir,"valid")
+        self.invalid_dir=os.path.join(data_validation_dir,"invalid")
+        self.valid_train_file_path=os.path.join(self.valid_dir,TRAIN_FILE_NAME)
+        self.invalid_train_file_path=os.path.join(self.invalid_dir,TRAIN_FILE_NAME)
+        self.valid_test_file_path=os.path.join(self.valid_dir,TEST_FILE_NAME)
+        self.invalid_test_file_path=os.path.join(self.invalid_dir,TEST_FILE_NAME)
+        self.report_file_name=os.path.join(data_validation_dir,"report","report.yaml")
+        self.schema_file_path=os.path.join("schema.yaml")
+        self.missing_thresold=70
+
+        
+
+
+    
